@@ -97,5 +97,5 @@ app.use((req, res) => {
 // Démarrer le serveur
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`✅ Serveur en marche sur https://micro-blog.up.railway.app/:${PORT}`);
+  console.log(`✅ Serveur en marche sur https://keen-ambition-production-5a17.up.railway.app:${PORT}`);
 });

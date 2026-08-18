@@ -1186,7 +1186,7 @@ applyStaticTranslations();
    Changez API_BASE vers l'endroit où vous déployez horizone-backend/ (par défaut
    en développement local). La session est un JWT stocké dans localStorage.
 ===================================================================== */
-const API_BASE = 'https://micro-blog.up.railway.app/api';
+const API_BASE = 'https://keen-ambition-production-5a17.up.railway.app';
 
 let authUser = null;   // { id, name, email, avatarUrl } | null
 let pendingAvatarFile = null;
