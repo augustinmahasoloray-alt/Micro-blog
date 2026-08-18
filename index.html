@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Horizone Journal - Mini blog moderne permettant de découvrir et partager des articles.">
   <meta name="google-site-verification" content="ZJoCaeHCEdyvkBCRq2Tkjk1QZsVHhVRsXKsA9mu_SyY" />
   <title>Horizone Journal — Mini Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,8 +32,8 @@
         <li><a href="#blogSection" data-i18n="nav_articles" class="text-[var(--accent)]">Articles</a></li>
         <li><a href="#blogSection" data-i18n="nav_categories"
             class="hover:text-[var(--accent)] transition-colors">Catégories</a></li>
-        <li><a href="#contactSection" data-i18n="nav_about"
-            class="hover:text-[var(--accent)] transition-colors">À propos</a></li>
+        <li><a href="#contactSection" data-i18n="nav_about" class="hover:text-[var(--accent)] transition-colors">À
+            propos</a></li>
         <li><a href="#contactSection" data-i18n="nav_contact"
             class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
       </ul>
@@ -62,7 +63,8 @@
 
         <div id="navLoggedOut" class="flex items-center gap-3">
           <button type="button" id="openLoginBtn" data-i18n="login"
-            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Se connecter</button>
+            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Se
+            connecter</button>
           <button type="button" id="openSignupBtn" data-i18n="signup"
             class="nav-cta text-base px-5 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity">S'inscrire</button>
         </div>
@@ -71,7 +73,8 @@
           <img id="navUserAvatar" src="" alt="" class="w-9 h-9 rounded-full object-cover border border-white/30">
           <span id="navUserName" class="nav-text text-base font-medium"></span>
           <button type="button" id="logoutBtn" data-i18n="logout"
-            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Se déconnecter</button>
+            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Se
+            déconnecter</button>
         </div>
       </div>
 
@@ -348,7 +351,8 @@
     style="background:var(--bg-page); overflow: visible;" id="blogSection">
 
     <div class="flex items-center justify-between mb-6 lg:hidden">
-      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Derniers articles</h2>
+      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Derniers articles
+      </h2>
       <button id="filterToggleBtn" data-i18n="filters_btn" class="text-base px-4 py-2 rounded-full border font-medium"
         style="border-color:var(--surface-border); color:var(--text-primary)">Filtres ▾</button>
     </div>
@@ -428,7 +432,8 @@
           <h4 data-i18n="favorites" class="text-base font-bold tracking-wide uppercase mb-2"
             style="color:var(--text-secondary)">Favoris</h4>
           <ul id="favoritesList" class="space-y-2 text-base">
-            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">Aucun favori pour le moment — cliquez sur 🔖 sur une carte.</li>
+            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">Aucun favori pour le
+              moment — cliquez sur 🔖 sur une carte.</li>
           </ul>
         </div>
       </aside>
@@ -444,7 +449,8 @@
             <button id="addArticleBtn" data-i18n="new_article" class="text-base px-4 py-2.5 rounded-full font-semibold"
               style="background:var(--accent); color:#fff">+ Nouvel article</button>
           </div>
-          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">Chargement des articles…</p>
+          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">
+            Chargement des articles…</p>
           <div id="articleGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6"></div>
         </div>
 
@@ -469,7 +475,8 @@
               style="color:var(--text-secondary)">
               <span aria-hidden="true">←</span> <span data-i18n="back_to_articles">Retour aux articles</span>
             </button>
-            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">Nouvel article</h2>
+            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">Nouvel
+              article</h2>
           </div>
           <form id="addArticleForm" class="space-y-3 text-base max-w-xl">
             <input required name="title" data-i18n-placeholder="ph_title" placeholder="Titre"
@@ -481,11 +488,12 @@
             <input name="image" data-i18n-placeholder="ph_image" placeholder="URL de l'image de couverture (facultatif)"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-            <textarea required name="description" data-i18n-placeholder="ph_description" placeholder="Courte description"
-              rows="2" class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"
-              style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>
-            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Texte intégral de l'article" rows="10"
+            <textarea required name="description" data-i18n-placeholder="ph_description"
+              placeholder="Courte description" rows="2"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"
+              style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>
+            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Texte intégral de l'article"
+              rows="10" class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>
             <button type="submit" data-i18n="publish"
               class="w-full sm:w-auto text-base px-5 py-2.5 rounded-full font-semibold"
@@ -551,8 +559,8 @@
           <h4 data-i18n="comments" class="font-display text-lg mb-3" style="color:var(--text-primary)">Commentaires</h4>
           <div id="lbComments" class="space-y-3 mb-4"></div>
           <form id="lbCommentForm" class="flex gap-2">
-            <input id="lbCommentInput" type="text" data-i18n-placeholder="write_comment" placeholder="Écrire un commentaire…"
-              class="flex-1 text-base rounded-full px-4 py-2.5 border outline-none"
+            <input id="lbCommentInput" type="text" data-i18n-placeholder="write_comment"
+              placeholder="Écrire un commentaire…" class="flex-1 text-base rounded-full px-4 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
             <button type="submit" data-i18n="post" class="text-base px-4 py-2.5 rounded-full font-semibold"
               style="background:var(--accent); color:#fff">Publier</button>
@@ -576,7 +584,8 @@
           <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
         </svg>
       </div>
-      <h3 data-i18n="login_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Connexion</h3>
+      <h3 data-i18n="login_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">
+        Connexion</h3>
 
       <form id="loginForm" class="space-y-4">
         <div>
@@ -595,8 +604,8 @@
         </div>
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label data-i18n="password_label" class="text-base font-medium"
-              style="color:var(--text-secondary)">Mot de passe</label>
+            <label data-i18n="password_label" class="text-base font-medium" style="color:var(--text-secondary)">Mot de
+              passe</label>
             <a href="#" id="forgotPasswordLink" data-i18n="forgot_password" class="text-base"
               style="color:var(--accent)">Mot de passe oublié ?</a>
           </div>
@@ -635,7 +644,8 @@
       </label>
       <input type="file" id="signupAvatarInput" accept="image/*" class="hidden">
 
-      <h3 data-i18n="signup_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Inscription</h3>
+      <h3 data-i18n="signup_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">
+        Inscription</h3>
 
       <form id="signupForm" class="space-y-4">
         <div>
@@ -688,7 +698,8 @@
 
       <div class="flex items-center gap-3 my-5">
         <div class="flex-1 h-px" style="background:var(--surface-border)"></div>
-        <span data-i18n="or_continue_with" class="text-base" style="color:var(--text-secondary)">ou continuez avec</span>
+        <span data-i18n="or_continue_with" class="text-base" style="color:var(--text-secondary)">ou continuez
+          avec</span>
         <div class="flex-1 h-px" style="background:var(--surface-border)"></div>
       </div>
 
@@ -707,7 +718,8 @@
         <div class="flex flex-col justify-center items-center">
           <h2 data-i18n="reviews_title" class="font-display text-base md:text-3xl mb-1"
             style="color:var(--text-primary)">Ce que disent les voyageurs</h2>
-          <p data-i18n="reviews_subtitle" class="text-base" style="color:var(--text-secondary)">De vraies notes de lecteurs qui ont parcouru les sentiers avec nous.</p>
+          <p data-i18n="reviews_subtitle" class="text-base" style="color:var(--text-secondary)">De vraies notes de
+            lecteurs qui ont parcouru les sentiers avec nous.</p>
         </div>
         <button type="button" id="openReviewBtn" data-i18n="give_review_btn"
           class="text-base px-5 py-2.5 rounded-full font-semibold" style="background:var(--accent); color:#fff">
@@ -739,23 +751,28 @@
       </div>
 
       <div class="review-modal-right">
-        <h4 data-i18n="review_form_title" class="font-display text-lg mb-1" style="color:var(--text-primary)">Veuillez remplir le formulaire ci-dessous.</h4>
-        <p data-i18n="review_form_note" class="text-base mb-6" style="color:var(--text-secondary)">Nous nous engageons à le publier sous 1 jour ouvré.</p>
+        <h4 data-i18n="review_form_title" class="font-display text-lg mb-1" style="color:var(--text-primary)">Veuillez
+          remplir le formulaire ci-dessous.</h4>
+        <p data-i18n="review_form_note" class="text-base mb-6" style="color:var(--text-secondary)">Nous nous engageons à
+          le publier sous 1 jour ouvré.</p>
 
         <form id="reviewForm" class="space-y-5">
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label data-i18n="ph_first_name" class="text-base font-medium" style="color:var(--text-secondary)">Prénom *</label>
+              <label data-i18n="ph_first_name" class="text-base font-medium" style="color:var(--text-secondary)">Prénom
+                *</label>
               <input required name="firstName" class="review-input">
             </div>
             <div>
-              <label data-i18n="ph_last_name" class="text-base font-medium" style="color:var(--text-secondary)">Nom *</label>
+              <label data-i18n="ph_last_name" class="text-base font-medium" style="color:var(--text-secondary)">Nom
+                *</label>
               <input required name="lastName" class="review-input">
             </div>
           </div>
 
           <div>
-            <label data-i18n="email_label" class="text-base font-medium" style="color:var(--text-secondary)">E-mail *</label>
+            <label data-i18n="email_label" class="text-base font-medium" style="color:var(--text-secondary)">E-mail
+              *</label>
             <input required type="email" name="email" class="review-input">
           </div>
 
@@ -766,13 +783,15 @@
           </div>
 
           <div>
-            <label data-i18n="ph_your_message" class="text-base font-medium" style="color:var(--text-secondary)">Votre message</label>
+            <label data-i18n="ph_your_message" class="text-base font-medium" style="color:var(--text-secondary)">Votre
+              message</label>
             <textarea name="message" rows="2" class="review-input resize-none"></textarea>
           </div>
 
           <label class="flex items-start gap-2 text-base" style="color:var(--text-secondary)">
             <input type="checkbox" name="updates" class="review-checkbox mt-0.5">
-            <span data-i18n="review_updates_checkbox">Souhaitez-vous recevoir des mises à jour de notre part ? (Nous promettons de ne pas spammer !)</span>
+            <span data-i18n="review_updates_checkbox">Souhaitez-vous recevoir des mises à jour de notre part ? (Nous
+              promettons de ne pas spammer !)</span>
           </label>
 
           <p id="reviewError" class="auth-error"></p>
@@ -797,7 +816,8 @@
             Journal</span>
           <p data-i18n="footer_tagline" class="text-[0.875rem] leading-relaxed mb-4"
             style="color:var(--text-secondary)">
-            Histoires de sentiers, de déserts et de crêtes — un mini blog pour ceux qui voyagent lentement et à pied.</p>
+            Histoires de sentiers, de déserts et de crêtes — un mini blog pour ceux qui voyagent lentement et à pied.
+          </p>
           <div class="flex items-center gap-3">
 
             <!-- Facebook -->
@@ -873,15 +893,16 @@
                   class="hover:text-[var(--accent)] transition-colors">Catégories</a></li>
               <li><a href="#blogSection" data-i18n="footer_popular_posts"
                   class="hover:text-[var(--accent)] transition-colors">Articles populaires</a></li>
-              <li><a href="#contactSection" data-i18n="nav_about"
-                  class="hover:text-[var(--accent)] transition-colors">À propos</a></li>
+              <li><a href="#contactSection" data-i18n="nav_about" class="hover:text-[var(--accent)] transition-colors">À
+                  propos</a></li>
             </ul>
           </div>
         </div>
 
         <!-- newsletter -->
         <div class="col-span-2 lg:col-span-1">
-          <h4 data-i18n="stay_connected" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Restez connecté</h4>
+          <h4 data-i18n="stay_connected" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Restez
+            connecté</h4>
           <p data-i18n="newsletter_text" class="text-[0.875rem] leading-relaxed mb-3"
             style="color:var(--text-secondary)">
             Abonnez-vous pour recevoir de nouvelles histoires et des notes de sentier dans votre boîte mail.</p>
@@ -914,9 +935,11 @@
         style="border-color:var(--surface-border); color:var(--text-secondary)">
         <span data-i18n="rights_reserved">© 2026 Horizone Journal. Tous droits réservés.</span>
         <span class="flex items-center gap-3">
-          <a href="#" data-i18n="privacy_policy" class="hover:text-[var(--accent)] transition-colors">Politique de confidentialité</a>
+          <a href="#" data-i18n="privacy_policy" class="hover:text-[var(--accent)] transition-colors">Politique de
+            confidentialité</a>
           <span>·</span>
-          <a href="#" data-i18n="terms_of_service" class="hover:text-[var(--accent)] transition-colors">Conditions d'utilisation</a>
+          <a href="#" data-i18n="terms_of_service" class="hover:text-[var(--accent)] transition-colors">Conditions
+            d'utilisation</a>
         </span>
       </div>
     </div>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://micro-blog-g4yiyg.fly.dev/sitemap.xml
