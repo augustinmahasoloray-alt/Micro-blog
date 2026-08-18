@@ -17,21 +17,21 @@
 <body class="min-h-screen">
 
 
-  <!-- NAVBAR -->
+  <!-- ===================== BARRE DE NAVIGATION ===================== -->
   <header id="siteHeader" class="fixed top-0 left-0 right-0 z-40">
-    <nav class="max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-10 py-5">
+    <nav class="max-w-[1800px] mx-auto flex items-center justify-between px-5 md:px-10 py-5">
       <a href="#" class="flex items-center gap-2 shrink-0 nav-text">
         <span class="font-display text-2xl tracking-tight">Horizone Journal</span>
       </a>
 
       <ul class="hidden lg:flex items-center gap-8 text-[0.875rem] nav-text opacity-90">
-        <li><a href="#homeSection" data-i18n="nav_home" class="hover:text-[var(--accent)] transition-colors">Home</a>
+        <li><a href="#homeSection" data-i18n="nav_home" class="hover:text-[var(--accent)] transition-colors">Accueil</a>
         </li>
         <li><a href="#blogSection" data-i18n="nav_articles" class="text-[var(--accent)]">Articles</a></li>
         <li><a href="#blogSection" data-i18n="nav_categories"
-            class="hover:text-[var(--accent)] transition-colors">Categories</a></li>
+            class="hover:text-[var(--accent)] transition-colors">Catégories</a></li>
         <li><a href="#contactSection" data-i18n="nav_about"
-            class="hover:text-[var(--accent)] transition-colors">About</a></li>
+            class="hover:text-[var(--accent)] transition-colors">À propos</a></li>
         <li><a href="#contactSection" data-i18n="nav_contact"
             class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
       </ul>
@@ -43,41 +43,40 @@
             <path d="M21 21l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
           <input type="text" id="searchInputNav" data-i18n-placeholder="search_placeholder"
-            placeholder="Search articles…" class="nav-text bg-transparent outline-none text-base w-full">
+            placeholder="Rechercher des articles…" class="nav-text bg-transparent outline-none text-base w-full">
         </div>
 
-        <!-- language switcher (desktop) -->
-        <select id="langSelect" aria-label="Select language"
+        <!-- Sélecteur de langue (bureau) -->
+        <select id="langSelect" aria-label="Sélectionner la langue"
           class="nav-pill nav-text text-sm font-semibold border rounded-full pl-3 pr-2 py-2.5 outline-none cursor-pointer">
           <option value="en">EN</option>
           <option value="fr">FR</option>
           <option value="es">ES</option>
         </select>
 
-        <!-- dark mode toggle (desktop) -->
-        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <!-- Bouton du mode sombre (bureau) -->
+        <button id="themeToggle" class="theme-toggle" aria-label="Activer/désactiver le mode sombre">
           <span class="knob"><i class="fa-solid fa-moon"></i></span>
         </button>
 
         <div id="navLoggedOut" class="flex items-center gap-3">
           <button type="button" id="openLoginBtn" data-i18n="login"
-            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Log In</button>
+            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Se connecter</button>
           <button type="button" id="openSignupBtn" data-i18n="signup"
-            class="nav-cta text-base px-5 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity">Sign
-            Up</button>
+            class="nav-cta text-base px-5 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity">S'inscrire</button>
         </div>
 
         <div id="navLoggedIn" class="hidden items-center gap-3">
           <img id="navUserAvatar" src="" alt="" class="w-9 h-9 rounded-full object-cover border border-white/30">
           <span id="navUserName" class="nav-text text-base font-medium"></span>
           <button type="button" id="logoutBtn" data-i18n="logout"
-            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Log Out</button>
+            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Se déconnecter</button>
         </div>
       </div>
 
-      <!-- burger (mobile) -->
+      <!-- Menu burger (mobile) -->
       <button id="burgerBtn" class="burger lg:hidden relative w-9 h-9 flex items-center justify-center"
-        aria-label="Open menu">
+        aria-label="Ouvrir le menu">
         <span class="absolute w-6 h-[2px] burger-line line1" style="transform:translateY(-6px)"></span>
         <span class="absolute w-6 h-[2px] burger-line line2"></span>
         <span class="absolute w-6 h-[2px] burger-line line3" style="transform:translateY(6px)"></span>
@@ -85,9 +84,9 @@
     </nav>
   </header>
 
-  <!-- HERO WRAPPER -->
+  <!-- ===================== SECTION HÉROÏQUE ===================== -->
   <div id="homeSection" class="reveal hero-wrapper relative w-full h-screen min-h-[640px] text-white">
-    <!-- SLIDES -->
+    <!-- DIAPORAMA -->
     <div id="slides" class="absolute inset-0">
       <div class="hero-slide active"
         style="background-image:url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=80'); background-size:cover; background-position:center;">
@@ -100,31 +99,31 @@
       </div>
     </div>
 
-    <!-- gradient overlays (stay dark for legibility on both themes) -->
+    <!-- Couches de dégradé (restent sombres pour la lisibilité) -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-[2]"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[2]"></div>
 
-    <!-- MAIN HERO CONTENT -->
+    <!-- CONTENU PRINCIPAL DE LA SECTION HÉROÏQUE -->
     <div
-      class="relative z-10 max-w-[1400px] mx-auto h-[calc(100%-92px)] px-5 md:px-10 flex flex-col justify-end pb-8 md:pb-12">
+      class="relative z-10 max-w-[1800px] mx-auto h-[calc(100%-92px)] px-5 md:px-10 flex flex-col justify-end pb-8 md:pb-12">
 
       <!-- =========================================================
-       MAIN HERO CONTENT
+       CONTENU PRINCIPAL DE LA SECTION HÉROÏQUE
        ========================================================= -->
       <div
         class="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16">
 
         <!-- =======================================================
-         BLOC 1 — AUTHOR + ARTICLE CONTENT
+         BLOC 1 — AUTEUR + CONTENU DE L'ARTICLE
          ======================================================= -->
         <div class="w-full lg:flex-1 flex flex-col items-center text-center lg:items-start lg:text-left">
 
-          <!-- Author -->
+          <!-- Auteur -->
           <div class="flex items-center justify-center lg:justify-start gap-3 mb-5">
 
             <img id="authorImg"
               src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=100&q=80"
-              class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-white/30" alt="Author">
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-white/30" alt="Auteur">
 
             <div class="text-base">
               <p id="authorName" class="font-semibold">
@@ -132,27 +131,27 @@
               </p>
 
               <p class="text-white/60 text-base mt-0.5">
-                <span id="authorDate">24 Jan 2024</span>
+                <span id="authorDate">24 janv. 2024</span>
                 ·
-                <span id="authorRead">10 min read</span>
+                <span id="authorRead">10 min de lecture</span>
               </p>
             </div>
 
           </div>
 
 
-          <!-- Category -->
+          <!-- Catégorie -->
           <span id="slideBadge" class="inline-block text-base font-semibold tracking-wide
                bg-white/15 backdrop-blur-md
                border border-white/20
                rounded-full px-3.5 py-1.5 mb-4">
 
-            Hiking
+            Randonnée
 
           </span>
 
 
-          <!-- Title -->
+          <!-- Titre -->
           <h1 id="slideTitle" class="font-display
                text-3xl
                sm:text-4xl
@@ -162,7 +161,7 @@
                mb-4
                max-w-4xl">
 
-            Exploring the Wonders of Hiking
+            Explorer les merveilles de la randonnée
 
           </h1>
 
@@ -175,14 +174,13 @@
                max-w-2xl
                mb-6">
 
-            A weekend on foot through canyon trails —
-            the story behind the switchbacks, the silence,
-            and the view that made it worth it.
+            Un week-end à pied à travers les sentiers des canyons —
+            l'histoire des lacets, du silence et du panorama qui en valait la peine.
 
           </p>
 
 
-          <!-- Slider dots -->
+          <!-- Indicateurs du diaporama -->
           <div class="flex items-center justify-center lg:justify-start gap-2">
 
             <button data-dot="0" class="dot active">
@@ -200,7 +198,7 @@
 
 
         <!-- =======================================================
-         BLOC 2 — STATS + CTA
+         BLOC 2 — STATISTIQUES + APPEL À L'ACTION
          ======================================================= -->
         <div id="heroStatsBar" class="w-full lg:w-auto
              shrink-0
@@ -211,7 +209,7 @@
              gap-5
              lg:self-start">
 
-          <!-- Stats -->
+          <!-- Statistiques -->
           <div class="flex
                justify-center
                lg:justify-end
@@ -226,7 +224,7 @@
                    sm:px-3.5 sm:py-2.5" style="animation-delay:.05s">
 
                 <span data-count="128" data-suffix="+" class="counter font-mono
-                     text-lg
+                     text-2xl
                      sm:text-xl
                      md:text-base
                      tabular-nums" style="color:var(--tile-text)">
@@ -259,7 +257,7 @@
                    sm:px-3.5 sm:py-2.5" style="animation-delay:.15s">
 
                 <span data-count="9800" data-suffix="+" class="counter font-mono
-                     text-lg
+                     text-2xl
                      sm:text-xl
                      md:text-base
                      tabular-nums" style="color:var(--tile-text)">
@@ -277,7 +275,7 @@
                    tracking-wide
                    uppercase">
 
-                Monthly readers
+                Lecteurs mensuels
 
               </p>
 
@@ -295,7 +293,7 @@
             ">
 
                 <span data-count="4.9" data-decimals="1" class="counter font-mono
-                     text-lg
+                     text-2xl
                      sm:text-xl
                      md:text-base
                      tabular-nums" style="color:var(--accent-gold)">
@@ -313,7 +311,7 @@
                    tracking-wide
                    uppercase">
 
-                Reader rating
+                Note des lecteurs
 
               </p>
 
@@ -322,7 +320,7 @@
           </div>
 
 
-          <!-- CTA -->
+          <!-- Appel à l'action -->
           <button type="button" id="heroCreateArticleBtn" data-i18n="hero_create_article" class="text-base
                px-5 py-2.5
                rounded-full
@@ -331,7 +329,7 @@
                transition-opacity
                whitespace-nowrap" style="background:var(--accent); color:#fff">
 
-            Write your own article
+            Rédiger votre propre article
 
           </button>
 
@@ -343,22 +341,21 @@
   </div>
 
   <!-- ============================================================
-     BLOG SECTION — 3 columns: filters (absolute) / grid / chatbot (absolute)
+     SECTION BLOG — 3 colonnes : filtres (absolus) / grille / chatbot (absolu)
 ============================================================ -->
   <section class="reveal relative max-w-[1800px] mx-auto px-5 md:px-10 py-14"
     style="background:var(--bg-page); overflow: visible;" id="blogSection">
 
     <div class="flex items-center justify-between mb-6 lg:hidden">
-      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Latest articles
-      </h2>
+      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Derniers articles</h2>
       <button id="filterToggleBtn" data-i18n="filters_btn" class="text-base px-4 py-2 rounded-full border font-medium"
-        style="border-color:var(--surface-border); color:var(--text-primary)">Filters ▾</button>
+        style="border-color:var(--surface-border); color:var(--text-primary)">Filtres ▾</button>
     </div>
 
-    <!-- relative container so the two side columns can sit position:absolute inside it -->
+    <!-- Conteneur relatif pour que les deux colonnes latérales puissent être en position absolue -->
     <div class="relative flex flex-col lg:flex-row lg:items-start" id="columnsWrap">
 
-      <!-- ============ COLUMN 1 — filters / discovery (absolute, left) ============ -->
+      <!-- ============ COLONNE 1 — filtres / découverte (absolue, à gauche) ============ -->
       <aside id="sidebarLeft" class="hidden lg:block p-5 space-y-10">
 
         <div>
@@ -370,27 +367,27 @@
               <path d="M21 21l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
             <input id="searchInput" type="text" data-i18n-placeholder="search_placeholder"
-              placeholder="Search articles…" class="bg-transparent outline-none text-base w-full"
+              placeholder="Rechercher des articles…" class="bg-transparent outline-none text-base w-full"
               style="color:var(--text-primary)">
           </div>
           <button id="exploreBtn" data-i18n="explore_all"
             class="w-full mt-2 text-base font-semibold rounded-full py-2 transition-all duration-200 explore-btn"
             style="background:var(--accent); color:#fff">
-            Explore all
+            Explorer tout
           </button>
         </div>
 
         <div>
           <h4 data-i18n="sort_by" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Sort by</h4>
+            style="color:var(--text-secondary)">Trier par</h4>
           <div class="flex gap-2">
             <select id="sortSelect" class="flex-1 text-base rounded-lg px-2 py-2 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-              <option value="date" data-i18n="sort_date">Date created</option>
-              <option value="likes" data-i18n="sort_likes">Number of likes</option>
-              <option value="comments" data-i18n="sort_comments">Most commented</option>
+              <option value="date" data-i18n="sort_date">Date de création</option>
+              <option value="likes" data-i18n="sort_likes">Nombre de likes</option>
+              <option value="comments" data-i18n="sort_comments">Les plus commentés</option>
             </select>
-            <button id="orderToggle" title="Toggle ascending / descending"
+            <button id="orderToggle" title="Inverser l'ordre croissant / décroissant"
               class="w-9 h-9 rounded-lg border flex items-center justify-center"
               style="border-color:var(--surface-border); color:var(--text-primary)">↓</button>
           </div>
@@ -398,58 +395,55 @@
 
         <div>
           <h4 data-i18n="recent_articles" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Recent articles</h4>
+            style="color:var(--text-secondary)">Articles récents</h4>
           <ul id="recentList" class="space-y-2 text-base"></ul>
         </div>
 
         <div>
           <h4 data-i18n="popular_articles" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Popular articles</h4>
+            style="color:var(--text-secondary)">Articles populaires</h4>
           <ul id="popularList" class="space-y-2 text-base"></ul>
         </div>
 
         <div>
           <h4 data-i18n="categories" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Categories</h4>
+            style="color:var(--text-secondary)">Catégories</h4>
           <div id="categoryList" class="flex flex-wrap gap-1.5"></div>
         </div>
 
         <div>
           <h4 data-i18n="authors" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Authors</h4>
+            style="color:var(--text-secondary)">Auteurs</h4>
           <ul id="authorList" class="space-y-2 text-base"></ul>
         </div>
 
         <div id="myArticlesSection" class="hidden">
           <h4 data-i18n="my_articles" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">My articles</h4>
+            style="color:var(--text-secondary)">Mes articles</h4>
           <ul id="myArticlesList" class="space-y-2 text-base"></ul>
         </div>
 
         <div>
           <h4 data-i18n="favorites" class="text-base font-bold tracking-wide uppercase mb-2"
-            style="color:var(--text-secondary)">Favorites</h4>
+            style="color:var(--text-secondary)">Favoris</h4>
           <ul id="favoritesList" class="space-y-2 text-base">
-            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">No favorites yet — click
-              🔖
-              on a card.</li>
+            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">Aucun favori pour le moment — cliquez sur 🔖 sur une carte.</li>
           </ul>
         </div>
       </aside>
 
-      <!-- ============ COLUMN 2 — article grid (center, in flow) ============ -->
+      <!-- ============ COLONNE 2 — grille d'articles (centrée, dans le flux) ============ -->
       <div class="min-w-0">
 
-        <!-- grid view -->
+        <!-- Vue en grille -->
         <div id="articleGridView">
           <div class="flex items-center justify-between mb-6">
             <h2 data-i18n="latest_articles" class="hidden lg:block font-display text-2xl"
-              style="color:var(--text-primary)">Latest articles</h2>
+              style="color:var(--text-primary)">Derniers articles</h2>
             <button id="addArticleBtn" data-i18n="new_article" class="text-base px-4 py-2.5 rounded-full font-semibold"
-              style="background:var(--accent); color:#fff">+ New article</button>
+              style="background:var(--accent); color:#fff">+ Nouvel article</button>
           </div>
-          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">Loading
-            articles…</p>
+          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">Chargement des articles…</p>
           <div id="articleGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6"></div>
         </div>
 
@@ -467,55 +461,54 @@
           </button>
         </div>
 
-        <!-- inline article-creation form view — replaces the grid in this same column, no lightbox/modal -->
+        <!-- Vue du formulaire de création d'article — remplace la grille dans cette même colonne, sans lightbox ni modal -->
         <div id="articleFormView" class="hidden">
           <div class="flex items-center justify-between mb-6">
             <button type="button" id="articleFormBackBtn" class="flex items-center gap-1.5 text-base font-medium"
               style="color:var(--text-secondary)">
-              <span aria-hidden="true">←</span> <span data-i18n="back_to_articles">Back to articles</span>
+              <span aria-hidden="true">←</span> <span data-i18n="back_to_articles">Retour aux articles</span>
             </button>
-            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">New
-              article</h2>
+            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">Nouvel article</h2>
           </div>
           <form id="addArticleForm" class="space-y-3 text-base max-w-xl">
-            <input required name="title" data-i18n-placeholder="ph_title" placeholder="Title"
+            <input required name="title" data-i18n-placeholder="ph_title" placeholder="Titre"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-            <input name="category" data-i18n-placeholder="ph_category" placeholder="Category (e.g. Hiking)"
+            <input name="category" data-i18n-placeholder="ph_category" placeholder="Catégorie (ex: Randonnée)"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-            <input name="image" data-i18n-placeholder="ph_image" placeholder="Cover image URL (optional)"
+            <input name="image" data-i18n-placeholder="ph_image" placeholder="URL de l'image de couverture (facultatif)"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-            <textarea required name="description" data-i18n-placeholder="ph_description" placeholder="Short description"
+            <textarea required name="description" data-i18n-placeholder="ph_description" placeholder="Courte description"
               rows="2" class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>
-            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Full article text" rows="10"
+            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Texte intégral de l'article" rows="10"
               class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>
             <button type="submit" data-i18n="publish"
               class="w-full sm:w-auto text-base px-5 py-2.5 rounded-full font-semibold"
-              style="background:var(--accent); color:#fff">Publish</button>
+              style="background:var(--accent); color:#fff">Publier</button>
           </form>
         </div>
       </div>
 
-      <!-- ============ COLUMN 3 — chatbot ============ -->
+      <!-- ============ COLONNE 3 — chatbot ============ -->
       <div id="chatbotCol" class="hidden lg:block">
-        <!-- Panneau de chat : toujours visible en desktop, pas de bouton pour le fermer -->
+        <!-- Panneau de chat : toujours visible sur bureau, pas de bouton pour le fermer -->
         <div id="chatPanel" class="flex flex-col overflow-hidden"
           style="background:var(--bg-page); backdrop-filter:blur(40px);">
           <div class="px-4 py-3 flex items-center justify-between rounded-full mb-3"
             style="background:var(--accent); color:#fff">
             <span class="font-display text-base font-semibold w-full text-center"> <i
-                class="fa-solid fa-robot text-base mr-3"></i> Journal Assistant</span>
-            <!-- la croix ne sert qu'à fermer l'overlay en mobile -->
+                class="fa-solid fa-robot text-base mr-3"></i> Assistant du Journal</span>
+            <!-- La croix sert uniquement à fermer l'overlay sur mobile -->
             <button id="chatClose" class="lg:hidden text-lg leading-none shrink-0" style="color:#fff"><i
                 class="fa-solid fa-xmark"></i></button>
           </div>
           <div id="chatMessages" class="flex-1 overflow-y-auto px-4 py-3 space-y-3 text-base"></div>
           <form id="chatForm" class="flex items-center gap-2 p-3 border-t" style="border-color:var(--surface-border)">
-            <input id="chatInput" type="text" placeholder="Ask about an article…"
+            <input id="chatInput" type="text" placeholder="Posez une question sur un article…"
               class="flex-1 text-base rounded-full px-3.5 py-2 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
             <button type="submit" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
@@ -526,12 +519,12 @@
     </div>
   </section>
 
-  <!-- mobile chat toggle -->
+  <!-- Bouton de chat mobile -->
   <button id="chatToggleMobile"
     class="lg:hidden fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full flex items-center justify-center text-base shadow-lg"
     style="background:var(--accent); color:#fff"><i class="fa-solid fa-robot"></i></button>
 
-  <!-- ============ LIGHTBOX — full article view ============ -->
+  <!-- ============ LIGHTBOX — vue complète de l'article ============ -->
   <div id="lightbox" class="fixed inset-0 z-50 hidden items-start justify-center overflow-y-auto py-8 px-4"
     style="background:rgba(0,0,0,.7)">
     <div class="w-full max-w-2xl rounded-2xl overflow-hidden" style="background:var(--drawer-bg)">
@@ -554,25 +547,25 @@
         <div id="lbShare" class="flex items-center gap-2 mb-8"></div>
 
         <div>
-          <h4 data-i18n="comments" class="font-display text-lg mb-3" style="color:var(--text-primary)">Comments</h4>
+          <h4 data-i18n="comments" class="font-display text-lg mb-3" style="color:var(--text-primary)">Commentaires</h4>
           <div id="lbComments" class="space-y-3 mb-4"></div>
           <form id="lbCommentForm" class="flex gap-2">
-            <input id="lbCommentInput" type="text" data-i18n-placeholder="write_comment" placeholder="Write a comment…"
+            <input id="lbCommentInput" type="text" data-i18n-placeholder="write_comment" placeholder="Écrire un commentaire…"
               class="flex-1 text-base rounded-full px-4 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
             <button type="submit" data-i18n="post" class="text-base px-4 py-2.5 rounded-full font-semibold"
-              style="background:var(--accent); color:#fff">Post</button>
+              style="background:var(--accent); color:#fff">Publier</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ AUTH modal (Login / Sign Up) ============ -->
+  <!-- ============ MODALE D'AUTHENTIFICATION (Connexion / Inscription) ============ -->
   <div id="authModal" class="fixed inset-0 z-[60] hidden items-center justify-center px-4"
     style="background:rgba(0,0,0,.6)">
 
-    <!-- LOGIN card -->
+    <!-- Carte de connexion -->
     <div id="loginCard" class="auth-card hidden">
       <button type="button" id="authModalCloseLogin" class="absolute top-4 right-4 text-base leading-none"
         style="color:var(--text-secondary)">×</button>
@@ -582,8 +575,7 @@
           <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
         </svg>
       </div>
-      <h3 data-i18n="login_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Login
-      </h3>
+      <h3 data-i18n="login_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Connexion</h3>
 
       <form id="loginForm" class="space-y-4">
         <div>
@@ -597,15 +589,15 @@
               </svg>
             </span>
             <input required type="email" name="email" data-i18n-placeholder="ph_enter_email"
-              placeholder="Enter your email" class="auth-input">
+              placeholder="Entrez votre email" class="auth-input">
           </div>
         </div>
         <div>
           <div class="flex items-center justify-between mb-1">
             <label data-i18n="password_label" class="text-base font-medium"
-              style="color:var(--text-secondary)">Password</label>
+              style="color:var(--text-secondary)">Mot de passe</label>
             <a href="#" id="forgotPasswordLink" data-i18n="forgot_password" class="text-base"
-              style="color:var(--accent)">Forgot password?</a>
+              style="color:var(--accent)">Mot de passe oublié ?</a>
           </div>
           <div class="auth-input-wrap">
             <span class="auth-input-icon">
@@ -615,23 +607,23 @@
               </svg>
             </span>
             <input required type="password" name="password" data-i18n-placeholder="ph_enter_password"
-              placeholder="Enter your password" class="auth-input">
+              placeholder="Entrez votre mot de passe" class="auth-input">
           </div>
         </div>
 
         <p id="loginError" class="auth-error"></p>
 
-        <button type="submit" id="loginSubmitBtn" class="auth-submit" data-i18n="login_btn">Log In</button>
+        <button type="submit" id="loginSubmitBtn" class="auth-submit" data-i18n="login_btn">Se connecter</button>
       </form>
 
       <p class="text-center text-base mt-5" style="color:var(--text-secondary)">
-        <span data-i18n="not_registered">Not registered yet?</span>
+        <span data-i18n="not_registered">Pas encore inscrit ?</span>
         <button type="button" id="switchToSignup" data-i18n="signup_link" class="font-semibold"
-          style="color:var(--accent)">Sign Up ›</button>
+          style="color:var(--accent)">S'inscrire ›</button>
       </p>
     </div>
 
-    <!-- SIGN UP card -->
+    <!-- Carte d'inscription -->
     <div id="signupCard" class="auth-card hidden">
       <button type="button" id="authModalCloseSignup" class="absolute top-4 right-4 text-base leading-none"
         style="color:var(--text-secondary)">×</button>
@@ -642,13 +634,12 @@
       </label>
       <input type="file" id="signupAvatarInput" accept="image/*" class="hidden">
 
-      <h3 data-i18n="signup_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Sign
-        Up</h3>
+      <h3 data-i18n="signup_title" class="font-display text-xl text-center mb-6" style="color:var(--text-primary)">Inscription</h3>
 
       <form id="signupForm" class="space-y-4">
         <div>
           <label data-i18n="name_label" class="text-base font-medium mb-1 block"
-            style="color:var(--text-secondary)">Name</label>
+            style="color:var(--text-secondary)">Nom</label>
           <div class="auth-input-wrap">
             <span class="auth-input-icon">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -656,7 +647,7 @@
                 <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
               </svg>
             </span>
-            <input required type="text" name="name" data-i18n-placeholder="ph_enter_name" placeholder="Enter your name"
+            <input required type="text" name="name" data-i18n-placeholder="ph_enter_name" placeholder="Entrez votre nom"
               class="auth-input">
           </div>
         </div>
@@ -671,12 +662,12 @@
               </svg>
             </span>
             <input required type="email" name="email" data-i18n-placeholder="ph_enter_email"
-              placeholder="Enter your email" class="auth-input">
+              placeholder="Entrez votre email" class="auth-input">
           </div>
         </div>
         <div>
           <label data-i18n="password_label" class="text-base font-medium mb-1 block"
-            style="color:var(--text-secondary)">Password</label>
+            style="color:var(--text-secondary)">Mot de passe</label>
           <div class="auth-input-wrap">
             <span class="auth-input-icon">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -685,42 +676,41 @@
               </svg>
             </span>
             <input required type="password" name="password" minlength="6" data-i18n-placeholder="ph_create_password"
-              placeholder="Create a password" class="auth-input">
+              placeholder="Créez un mot de passe" class="auth-input">
           </div>
         </div>
 
         <p id="signupError" class="auth-error"></p>
 
-        <button type="submit" id="signupSubmitBtn" class="auth-submit" data-i18n="signup_btn">Sign Up</button>
+        <button type="submit" id="signupSubmitBtn" class="auth-submit" data-i18n="signup_btn">S'inscrire</button>
       </form>
 
       <div class="flex items-center gap-3 my-5">
         <div class="flex-1 h-px" style="background:var(--surface-border)"></div>
-        <span data-i18n="or_continue_with" class="text-base" style="color:var(--text-secondary)">or continue with</span>
+        <span data-i18n="or_continue_with" class="text-base" style="color:var(--text-secondary)">ou continuez avec</span>
         <div class="flex-1 h-px" style="background:var(--surface-border)"></div>
       </div>
 
       <p class="text-center text-base mt-5" style="color:var(--text-secondary)">
-        <span data-i18n="already_registered">Already have an account?</span>
+        <span data-i18n="already_registered">Vous avez déjà un compte ?</span>
         <button type="button" id="switchToLogin" data-i18n="login_link" class="font-semibold"
-          style="color:var(--accent)">Log In ›</button>
+          style="color:var(--accent)">Se connecter ›</button>
       </p>
     </div>
   </div>
 
-  <!-- ============ REVIEWS SECTION ============ -->
+  <!-- ============ SECTION AVIS ============ -->
   <section id="reviewsSection" class="reveal px-5 md:px-10 py-14" style="background:var(--bg-page)">
     <div class="max-w-[1800px] mx-auto">
       <div class="flex flex-col items-center justify-center mb-8 flex-wrap gap-4">
         <div class="flex flex-col justify-center items-center">
           <h2 data-i18n="reviews_title" class="font-display text-base md:text-3xl mb-1"
-            style="color:var(--text-primary)">What travelers say</h2>
-          <p data-i18n="reviews_subtitle" class="text-base" style="color:var(--text-secondary)">Real notes from readers
-            who've walked the trails with us.</p>
+            style="color:var(--text-primary)">Ce que disent les voyageurs</h2>
+          <p data-i18n="reviews_subtitle" class="text-base" style="color:var(--text-secondary)">De vraies notes de lecteurs qui ont parcouru les sentiers avec nous.</p>
         </div>
         <button type="button" id="openReviewBtn" data-i18n="give_review_btn"
           class="text-base px-5 py-2.5 rounded-full font-semibold" style="background:var(--accent); color:#fff">
-          Give your review
+          Donner votre avis
         </button>
       </div>
 
@@ -730,92 +720,83 @@
     </div>
   </section>
 
-  <!-- ============ REVIEW MODAL ============ -->
+  <!-- ============ MODALE AVIS ============ -->
   <div id="reviewModal" class="fixed inset-0 z-[60] hidden items-center justify-center px-4"
     style="background:rgba(0,0,0,.6)">
     <div class="review-modal-card">
-      <button type="button" id="reviewModalClose" class="review-modal-close" aria-label="Close">×</button>
+      <button type="button" id="reviewModalClose" class="review-modal-close" aria-label="Fermer">×</button>
 
       <div class="review-modal-left flex flex-col justify-center ">
         <h3 class="font-display leading-[1.05]" style="color:var(--text-primary)">
-          <span data-i18n="review_modal_heading_1">Want to</span><br>
-          <span data-i18n="review_modal_heading_2">share your story?</span><br>
-          <span data-i18n="review_modal_heading_accent" style="color:var(--accent)">Get in touch.</span>
+          <span data-i18n="review_modal_heading_1">Vous souhaitez</span><br>
+          <span data-i18n="review_modal_heading_2">partager votre histoire ?</span><br>
+          <span data-i18n="review_modal_heading_accent" style="color:var(--accent)">Contactez-nous.</span>
         </h3>
         <p data-i18n="review_form_intro" class="text-base mt-4" style="color:var(--text-secondary)">
-          We read every review — it usually shapes our next trip.
+          Nous lisons chaque avis — il façonne généralement notre prochain voyage.
         </p>
       </div>
 
       <div class="review-modal-right">
-        <h4 data-i18n="review_form_title" class="font-display text-lg mb-1" style="color:var(--text-primary)">Please
-          fill in the form below.</h4>
-        <p data-i18n="review_form_note" class="text-base mb-6" style="color:var(--text-secondary)">We aim to publish it
-          within 1 business day.</p>
+        <h4 data-i18n="review_form_title" class="font-display text-lg mb-1" style="color:var(--text-primary)">Veuillez remplir le formulaire ci-dessous.</h4>
+        <p data-i18n="review_form_note" class="text-base mb-6" style="color:var(--text-secondary)">Nous nous engageons à le publier sous 1 jour ouvré.</p>
 
         <form id="reviewForm" class="space-y-5">
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label data-i18n="ph_first_name" class="text-base font-medium" style="color:var(--text-secondary)">First
-                name *</label>
+              <label data-i18n="ph_first_name" class="text-base font-medium" style="color:var(--text-secondary)">Prénom *</label>
               <input required name="firstName" class="review-input">
             </div>
             <div>
-              <label data-i18n="ph_last_name" class="text-base font-medium" style="color:var(--text-secondary)">Last
-                name
-                *</label>
+              <label data-i18n="ph_last_name" class="text-base font-medium" style="color:var(--text-secondary)">Nom *</label>
               <input required name="lastName" class="review-input">
             </div>
           </div>
 
           <div>
-            <label data-i18n="email_label" class="text-base font-medium" style="color:var(--text-secondary)">E-mail
-              *</label>
+            <label data-i18n="email_label" class="text-base font-medium" style="color:var(--text-secondary)">E-mail *</label>
             <input required type="email" name="email" class="review-input">
           </div>
 
           <div>
             <label data-i18n="review_rating_label" class="text-base font-medium block mb-1"
-              style="color:var(--text-secondary)">Your rating</label>
+              style="color:var(--text-secondary)">Votre note</label>
             <div id="reviewStarsInput" class="flex items-center gap-1"></div>
           </div>
 
           <div>
-            <label data-i18n="ph_your_message" class="text-base font-medium" style="color:var(--text-secondary)">Your
-              message</label>
+            <label data-i18n="ph_your_message" class="text-base font-medium" style="color:var(--text-secondary)">Votre message</label>
             <textarea name="message" rows="2" class="review-input resize-none"></textarea>
           </div>
 
           <label class="flex items-start gap-2 text-base" style="color:var(--text-secondary)">
             <input type="checkbox" name="updates" class="review-checkbox mt-0.5">
-            <span data-i18n="review_updates_checkbox">Would you like to receive updates from us? (We promise no
-              spam!)</span>
+            <span data-i18n="review_updates_checkbox">Souhaitez-vous recevoir des mises à jour de notre part ? (Nous promettons de ne pas spammer !)</span>
           </label>
 
           <p id="reviewError" class="auth-error"></p>
 
           <button type="submit" id="reviewSubmitBtn" data-i18n="submit_review"
             class="text-base px-6 py-3 rounded-full font-semibold" style="background:var(--accent); color:#fff">
-            Submit review
+            Soumettre l'avis
           </button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- ============ PIED DE PAGE ============ -->
   <footer id="contactSection" class="reveal px-5 md:px-10 pb-10 border-t" style="border-color:var(--surface-border)">
     <div class="max-w-[1800px] mx-auto rounded-3xl p-8 md:p-10" style="background:var(--drawer-bg);">
       <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
 
-        <!-- brand -->
+        <!-- marque -->
         <div class="col-span-2 lg:col-span-1">
           <span class="font-display text-xl flex items-center gap-2 mb-3" style="color:var(--text-primary)">Horizone
             Journal</span>
           <p data-i18n="footer_tagline" class="text-[0.875rem] leading-relaxed mb-4"
             style="color:var(--text-secondary)">
-            Stories from the trail, the desert, and the ridgeline — a mini blog for people who travel slowly and on
-            foot.</p>
+            Histoires de sentiers, de déserts et de crêtes — un mini blog pour ceux qui voyagent lentement et à pied.</p>
           <div class="flex items-center gap-3">
 
             <!-- Facebook -->
@@ -878,38 +859,37 @@
           </div>
         </div>
 
-        <!-- explore -->
+        <!-- explorer -->
         <div class="w-full flex flex-col items-start justify-start text-left lg:items-center lg:justify-start ">
           <div>
-            <h4 data-i18n="explore" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Explore</h4>
+            <h4 data-i18n="explore" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Explorer</h4>
             <ul class="space-y-2 text-[0.875rem]" style="color:var(--text-secondary)">
               <li><a href="#homeSection" data-i18n="footer_home"
-                  class="hover:text-[var(--accent)] transition-colors">Home</a></li>
+                  class="hover:text-[var(--accent)] transition-colors">Accueil</a></li>
               <li><a href="#blogSection" data-i18n="footer_all_articles"
-                  class="hover:text-[var(--accent)] transition-colors">All Articles</a></li>
+                  class="hover:text-[var(--accent)] transition-colors">Tous les articles</a></li>
               <li><a href="#blogSection" data-i18n="categories"
-                  class="hover:text-[var(--accent)] transition-colors">Categories</a></li>
+                  class="hover:text-[var(--accent)] transition-colors">Catégories</a></li>
               <li><a href="#blogSection" data-i18n="footer_popular_posts"
-                  class="hover:text-[var(--accent)] transition-colors">Popular Posts</a></li>
+                  class="hover:text-[var(--accent)] transition-colors">Articles populaires</a></li>
               <li><a href="#contactSection" data-i18n="nav_about"
-                  class="hover:text-[var(--accent)] transition-colors">About</a></li>
+                  class="hover:text-[var(--accent)] transition-colors">À propos</a></li>
             </ul>
           </div>
         </div>
 
         <!-- newsletter -->
         <div class="col-span-2 lg:col-span-1">
-          <h4 data-i18n="stay_connected" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Stay
-            Connected</h4>
+          <h4 data-i18n="stay_connected" class="text-base font-semibold mb-3" style="color:var(--text-primary)">Restez connecté</h4>
           <p data-i18n="newsletter_text" class="text-[0.875rem] leading-relaxed mb-3"
             style="color:var(--text-secondary)">
-            Subscribe to get new stories and trail notes in your inbox.</p>
+            Abonnez-vous pour recevoir de nouvelles histoires et des notes de sentier dans votre boîte mail.</p>
           <form id="footerNewsletterForm" class="flex items-center gap-2">
-            <input type="email" required data-i18n-placeholder="email_placeholder" placeholder="Your email address"
+            <input type="email" required data-i18n-placeholder="email_placeholder" placeholder="Votre adresse email"
               class="flex-1 min-w-0 text-[0.875rem] rounded-full px-3.5 py-2.5 border outline-none"
               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
             <button type="submit" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-              style="background:var(--accent); color:#fff" aria-label="Subscribe"><i
+              style="background:var(--accent); color:#fff" aria-label="S'abonner"><i
                 class="fa-solid fa-paper-plane"></i></button>
           </form>
           <p class="text-[0.875rem] mt-3 flex items-center gap-1.5" style="color:var(--text-secondary)">
@@ -931,12 +911,11 @@
 
       <div class="mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-base"
         style="border-color:var(--surface-border); color:var(--text-secondary)">
-        <span data-i18n="rights_reserved">© 2026 Horizone Journal. All rights reserved.</span>
+        <span data-i18n="rights_reserved">© 2026 Horizone Journal. Tous droits réservés.</span>
         <span class="flex items-center gap-3">
-          <a href="#" data-i18n="privacy_policy" class="hover:text-[var(--accent)] transition-colors">Privacy Policy</a>
+          <a href="#" data-i18n="privacy_policy" class="hover:text-[var(--accent)] transition-colors">Politique de confidentialité</a>
           <span>·</span>
-          <a href="#" data-i18n="terms_of_service" class="hover:text-[var(--accent)] transition-colors">Terms of
-            Service</a>
+          <a href="#" data-i18n="terms_of_service" class="hover:text-[var(--accent)] transition-colors">Conditions d'utilisation</a>
         </span>
       </div>
     </div>
@@ -946,7 +925,7 @@
     class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] px-4 py-2.5 rounded-full text-base font-medium opacity-0 pointer-events-none transition-opacity duration-300"
     style="background:var(--text-primary); color:var(--bg-page)"></div>
 
-  <!-- MOBILE DRAWER -->
+  <!-- TIROIR MOBILE -->
   <div id="drawer"
     class="drawer fixed top-0 right-0 h-full w-[82%] max-w-sm border-l z-30 px-7 py-7 flex flex-col gap-7 overflow-y-auto"
     style="border-color:var(--nav-border)">
@@ -963,39 +942,39 @@
         <path d="M21 21l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
       </svg>
       <input type="text" id="searchInputDrawer" data-i18n-placeholder="search_placeholder"
-        placeholder="Search articles…" class="bg-transparent outline-none text-base w-full"
+        placeholder="Rechercher des articles…" class="bg-transparent outline-none text-base w-full"
         style="color:var(--text-primary)">
     </div>
 
     <ul class="flex flex-col gap-1 text-lg font-display">
       <li><a href="#homeSection" data-i18n="nav_home" class="block py-2.5 border-b"
-          style="border-color:var(--nav-border)">Home</a></li>
+          style="border-color:var(--nav-border)">Accueil</a></li>
       <li><a href="#blogSection" data-i18n="nav_articles" class="block py-2.5 border-b"
           style="border-color:var(--nav-border); color:var(--accent)">Articles</a></li>
       <li><a href="#blogSection" data-i18n="nav_categories" class="block py-2.5 border-b"
-          style="border-color:var(--nav-border)">Categories</a></li>
+          style="border-color:var(--nav-border)">Catégories</a></li>
       <li><a href="#contactSection" data-i18n="nav_about" class="block py-2.5 border-b"
-          style="border-color:var(--nav-border)">About</a></li>
+          style="border-color:var(--nav-border)">À propos</a></li>
       <li><a href="#contactSection" data-i18n="nav_contact" class="block py-2.5 border-b"
           style="border-color:var(--nav-border)">Contact</a></li>
     </ul>
 
-    <!-- language switcher (drawer) -->
+    <!-- Sélecteur de langue (tiroir) -->
     <div class="flex items-center justify-between text-base font-medium" style="color:var(--text-primary)">
-      <span data-i18n="language">Language</span>
-      <select id="langSelectDrawer" aria-label="Select language"
+      <span data-i18n="language">Langue</span>
+      <select id="langSelectDrawer" aria-label="Sélectionner la langue"
         class="text-base rounded-full px-3 py-1.5 border outline-none"
         style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">
-        <option value="en">English</option>
+        <option value="en">Anglais</option>
         <option value="fr">Français</option>
-        <option value="es">Español</option>
+        <option value="es">Espagnol</option>
       </select>
     </div>
 
-    <!-- dark mode toggle (drawer) -->
+    <!-- Bouton du mode sombre (tiroir) -->
     <div class="flex items-center justify-between text-base font-medium" style="color:var(--text-primary)">
-      <span data-i18n="dark_mode">Dark mode</span>
-      <button id="themeToggleDrawer" class="theme-toggle-drawer" aria-label="Toggle dark mode">
+      <span data-i18n="dark_mode">Mode sombre</span>
+      <button id="themeToggleDrawer" class="theme-toggle-drawer" aria-label="Activer/désactiver le mode sombre">
         <span class="knob"></span>
       </button>
     </div>
@@ -1003,10 +982,10 @@
     <div id="drawerLoggedOut" class="mt-auto flex flex-col gap-3">
       <button type="button" id="openLoginBtnMobile" data-i18n="login"
         class="text-center text-base px-5 py-3 rounded-full border"
-        style="border-color:var(--surface-border); color:var(--text-primary)">Log In</button>
+        style="border-color:var(--surface-border); color:var(--text-primary)">Se connecter</button>
       <button type="button" id="openSignupBtnMobile" data-i18n="signup"
         class="text-center text-base px-5 py-3 rounded-full font-semibold"
-        style="background:var(--accent); color:#fff">Sign Up</button>
+        style="background:var(--accent); color:#fff">S'inscrire</button>
     </div>
 
     <div id="drawerLoggedIn" class="hidden mt-auto flex-col gap-3">
@@ -1016,19 +995,19 @@
       </div>
       <button type="button" id="logoutBtnMobile" data-i18n="logout"
         class="text-center text-base px-5 py-3 rounded-full border"
-        style="border-color:var(--surface-border); color:var(--text-primary)">Log Out</button>
+        style="border-color:var(--surface-border); color:var(--text-primary)">Se déconnecter</button>
     </div>
   </div>
 
   <div id="backdrop"
     class="fixed inset-0 bg-black/50 z-20 opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-  <!-- ============ MOBILE filter drawer (same content, off-canvas) ============ -->
+  <!-- ============ TIROIR DE FILTRES MOBILE (même contenu, hors écran) ============ -->
   <div id="filterDrawer"
     class="drawer fixed top-0 left-0 h-full w-[85%] max-w-sm z-40 px-6 py-6 overflow-y-auto space-y-6"
     style="transform:translateX(-100%); border-right:1px solid var(--nav-border)">
     <div class="flex items-center justify-between">
-      <h3 data-i18n="filters_title" class="font-display text-lg" style="color:var(--text-primary)">Filters</h3>
+      <h3 data-i18n="filters_title" class="font-display text-lg" style="color:var(--text-primary)">Filtres</h3>
       <button id="closeFilterDrawer" class="text-base leading-none" style="color:var(--text-secondary)">×</button>
     </div>
     <div id="filterDrawerContent" class="space-y-6 text-base" style="color:var(--text-primary)"></div>

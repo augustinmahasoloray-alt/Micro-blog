@@ -1,89 +1,168 @@
-1. Présentation
-Ce projet est un blog dynamique avec un backend Express et un frontend statique (HTML/CSS/JS). Il permet aux utilisateurs de s’authentifier, de publier des articles, de les commenter, de les liker, d’uploader des images (via Cloudinary) et de discuter avec un assistant (chatbot) basé sur l’API Groq. Les données des utilisateurs sont stockées dans Google Sheets.
+Horizone Journal — Mini Blog
+Un blog immersif pour les voyageurs lents, avec articles, communauté, assistant conversationnel et avis intégrés.
 
-2. Technologies utilisées
-Node.js / Express
+📖 À propos du projet
+Horizone Journal est une plateforme de blog.
 
-JWT (jsonwebtoken) pour l’authentification
+Ce projet a été développé dans une approche full-stack avec un front-end statique (HTML, CSS, Tailwind, JavaScript pur) et un back-end léger (Node.js / Express) qui stocke les données des utilisateurs, des articles publiés et des avis dans Google Sheets (via l'API Google Sheets).
 
-Cloudinary (upload d’images)
+🌐 Lien de deploiment
 
-Google Sheets API (stockage utilisateurs)
 
-Groq API (chatbot)
+✨ Fonctionnalités principales
+🌐 Interface utilisateur
+Carrousel héroïque avec diaporama automatique et navigation tactile
 
-HTML / CSS / JavaScript (frontend)
+Mode sombre / clair persistant (préférence locale)
 
-3. Prérequis
-Node.js (version 14+)
+Internationalisation (français, anglais, espagnol) – les textes statiques sont traduits instantanément, et les contenus dynamiques le sont via l'API MyMemory
 
-Un navigateur web
+Barre de navigation fixe avec recherche, menu burger mobile et tiroir latéral
 
-(Optionnel) Un serveur local comme Live Server pour le frontend
+📝 Gestion des articles
+Grille d’articles paginée (8 articles par défaut, mode « Explorer tout » pour une vue illimitée)
 
-4. Installation
-Clonez le dépôt, puis installez les dépendances du backend :
+Filtres : recherche par mot-clé, catégorie, auteur
 
+Tri : date, nombre de likes, nombre de commentaires (ordre croissant/décroissant)
+
+Création d’articles (formulaire en ligne) – nécessite une authentification
+
+Modification et suppression de ses propres articles
+
+Favoris : sauvegarde d’articles dans une liste personnelle
+
+Notifications toast pour les actions (favori, like, partage, etc.)
+
+❤️ Interactions sociales
+Likes (avec animation cœur) et compteur dynamique
+
+Réactions (👍, ❤️, 😮) sur les articles
+
+Notation par étoiles (de 1 à 5) avec moyenne affichée
+
+Commentaires : lecture et publication sur chaque article (via lightbox)
+
+Partage : copie du lien, partage sur Twitter et Facebook
+
+🧠 Assistant conversationnel (chatbot)
+Panneau de chat intégré dans la colonne de droite (bureau)
+
+Interface mobile en overlay (bouton flottant)
+
+Réponses contextuelles sur les articles, les favoris, les notes, etc. (backend requis)
+
+📝 Avis des lecteurs
+Section « Ce que disent les voyageurs » avec défilement continu (carrousel infini)
+
+Modale de soumission d’avis (prénom, nom, email, note, message)
+
+Les avis sont stockés dans Google Sheets et affichés en temps réel
+
+🔐 Authentification
+Inscription / Connexion avec JWT (stocké dans localStorage)
+
+Upload d’avatar vers Cloudinary (signature sécurisée côté serveur)
+
+Gestion de session : affichage du nom et de l’avatar dans la barre de navigation et le tiroir mobile
+
+Déconnexion
+
+🌍 Internationalisation (i18n)
+Support de trois langues : anglais, français, espagnol
+
+Traduction automatique des titres, descriptions et corps d’articles via MyMemory
+
+Les textes de l’interface sont intégrés dans un dictionnaire statique
+
+🎨 Design et expérience
+Typographie personnalisée (Tahoma pour les titres, Helvetica pour le corps, IBM Plex Mono pour les compteurs)
+
+Effets visuels : animations de défilement (reveal), transitions, micro-interactions sur les boutons
+
+Responsive : adapté aux écrans mobiles, tablettes et ordinateurs
+
+Accessibilité : balises ARIA, gestion des animations réduites
+
+🛠️ Stack technique
+Front-end
+HTML5 / CSS3 (avec variables CSS pour les thèmes)
+
+Tailwind CSS (via CDN)
+
+JavaScript vanilla (ES6 modules, async/await)
+
+Font Awesome et Devicon pour les icônes
+
+Google Fonts (IBM Plex Mono)
+
+Back-end
+Node.js + Express
+
+Google Sheets API (stockage des articles utilisateurs, avis)
+
+JWT pour l’authentification
+
+Cloudinary pour l’upload sécurisé des avatars (signature côté serveur)
+
+Le front-end peut fonctionner en mode dégradé (articles fictifs, avis fictifs) même sans back-end, mais les fonctionnalités d’authentification, de publication et d’avis nécessitent un back-end actif.
+
+🚀 Installation et lancement
+1. Cloner le dépôt
 bash
-npm install
-5. Configuration
-Créez un fichier .env à la racine du backend en vous basant sur l’exemple ci-dessous.
-Remplacez les valeurs par vos propres identifiants (ne committez jamais ce fichier).
+git clone https://github.com/augustinmahasoloray-alt/horizone-journal.git
+cd horizone-journal
+2. Configuration du back-end
+Le back-end est disponible dans un dépôt séparé (ou dans un dossier backend). Suivez ses instructions pour :
+
+Configurer les identifiants Google Sheets
+
+Mettre en place la signature Cloudinary
+
+Démarrer le serveur sur le port 3000 (ou autre)
+
+Variables d’environnement (.env) à définir :
 
 env
-# Serveur
-PORT=3001
+PORT=3000
+JWT_SECRET=your_jwt_secret
+GOOGLE_SHEETS_PRIVATE_KEY=...
+GOOGLE_SHEETS_CLIENT_EMAIL=...
+SPREADSHEET_ID=...
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+3. Lancer le front-end
+Ouvrez simplement index.html dans un navigateur moderne, ou utilisez un serveur local (Live Server, http-server, etc.).
 
-# JWT
-JWT_SECRET=votre_secret_jwt
+Le front-end est configuré pour appeler l’API sur https://horizone-backend-production.up.railway.app/api (déploiement Railway). Pour utiliser votre propre back-end, modifiez la constante API_BASE dans le fichier script.js.
 
-# Google Sheets
-GOOGLE_SHEET_ID=votre_google_sheet_id
-GOOGLE_SERVICE_ACCOUNT_EMAIL=votre_service_account_email
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nvotre_cle_privee\n-----END PRIVATE KEY-----\n"
+📁 Structure du projet (principaux fichiers)
+text
+/
+├── index.html               # Page principale (structure HTML)
+├── style.css                # Styles personnalisés (variables, animations, composants)
+├── script.js                # Toute la logique JavaScript (articles, auth, chat, avis, i18n…)
+└── README.md                # Ce fichier
 
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=votre_cloud_name
-CLOUDINARY_API_KEY=votre_api_key
-CLOUDINARY_API_SECRET=votre_api_secret
+🔧 Personnalisation et extensions
+Ajout de nouvelles langues : étendre l’objet TRANSLATIONS dans script.js et ajouter l’option dans les sélecteurs de langue.
 
-# Groq (chatbot)
-GROQ_API_KEY=votre_cle_groq
-6. Exécution
-Backend
-Lancez le serveur avec :
+Modification du nombre d’articles par page : changer la variable articlesPerPage (ligne ~1120).
 
-bash
-npm run dev
+Changer les articles fictifs : modifier le tableau MOCK_ARTICLES et MOCK_TRANSLATIONS.
 
-Frontend
-Le frontend est composé du fichier index.html (ainsi que script.js et style.css).
-Pour l’exécuter :
+Adapter l’apparence : les variables CSS dans :root et html.dark permettent de modifier les couleurs et les polices.
 
-Option 1 : ouvrez simplement index.html dans votre navigateur.
+📌 Points d’attention
+L’API de traduction MyMemory est gratuite mais limitée en volume. En cas d’échec, les textes restent en anglais.
 
-Option 2 : utilisez une extension comme Live Server (VS Code) pour servir le fichier sur un port local.
+Les articles publiés via le front-end sont stockés dans Google Sheets (via le back-end) ; les données ne sont pas persistées en local.
 
-Le frontend communique avec le backend via les appels API ; assurez-vous que le serveur backend est bien lancé avant d’utiliser l’application.
+Le chatbot nécessite une route /api/chat côté back-end ; si elle n’est pas implémentée, le bot répondra avec un message d’erreur.
 
-7. Accès à l'application
-Backend : http://localhost:3001 (exemple : http://localhost:3001/api/health pour vérifier)
+👤 Auteur
 
-Frontend : ouvrez index.html dans votre navigateur (ou via Live Server, par exemple http://127.0.0.1:5500/index.html)
+GitHub : augustinmahasoloray-alt
 
-8. Fonctionnalités principales
-Authentification : inscription / connexion (JWT)
-
-Gestion des articles : création, consultation, modification (via les routes /api/articles)
-
-Commentaires : ajout et affichage (routes /api/articles/comments)
-
-Likes : aimer / retirer un like (routes /api/articles/likes)
-
-Upload d’images : via Cloudinary (route /api/upload)
-
-Chatbot : assistant intelligent utilisant Groq (route /api/chat)
-
-Intégration Google Sheets : stockage des données utilisateurs
-
-Santé du serveur : endpoint /api/health pour vérifier le bon fonctionnement
+Email : augustinmahasoloray@gmail.com

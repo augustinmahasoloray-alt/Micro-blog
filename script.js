@@ -1,3 +1,4 @@
+//image par defaut pour un blog crée
 const FALLBACK_COVER_LOCAL = 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80';
 
 // ---------- Carousel ----------
@@ -231,12 +232,7 @@ updateHeaderOnScroll();
 
 /* =====================================================================
    LOGIQUE DE LA SECTION BLOG
-   Source : API publique DEV.to (https://dev.to/api/articles) — gratuite,
-   sans clé requise. Si la requête échoue (prévisualisation hors ligne / CORS
-   dans un visualiseur sandboxé) on tombe sur des articles fictifs locaux
-   pour que l'UI fonctionne toujours. "Ajouter un article" et "commentaires"
-   sont seulement en mémoire dans cette démo — branchez-les sur votre propre
-   backend Express/Prisma pour les persister réellement.
+   Source : API publique DEV.to (https://dev.to/api/articles)
 ===================================================================== */
 
 let articles = [];
