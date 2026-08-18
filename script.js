@@ -435,24 +435,6 @@ function setCategory(tag) { filters.category = filters.category === tag ? null :
 function setAuthor(name) { filters.author = filters.author === name ? null : name; applyFiltersAndSort(); }
 
 // ---------- filtrage / tri / rendu de la grille ----------
-function applyFiltersAndSort() {
-  let list = articles.filter(a => {
-    const matchSearch = !filters.search || a.title.toLowerCase().includes(filters.search) || a.tags.join(' ').toLowerCase().includes(filters.search);
-    const matchCat = !filters.category || a.tags.includes(filters.category);
-    const matchAuthor = !filters.author || a.author === filters.author;
-    return matchSearch && matchCat && matchAuthor;
-  });
-
-  list.sort((a, b) => {
-    let va, vb;
-    if (filters.sortBy === 'date') { va = new Date(a.date).getTime(); vb = new Date(b.date).getTime(); }
-    else if (filters.sortBy === 'likes') { va = reactions[a.id].likeCount; vb = reactions[b.id].likeCount; }
-    else { va = a.commentsCount + comments[a.id].length; vb = b.commentsCount + comments[b.id].length; }
-    return filters.order === 'desc' ? vb - va : va - vb;
-  });
-
-  renderGrid(list);
-}
 
 function renderGrid(list) {
   if (list.length === 0) {
@@ -830,12 +812,7 @@ document.getElementById('orderToggle').addEventListener('click', e => {
   e.target.textContent = filters.order === 'desc' ? '↓' : '↑';
   applyFiltersAndSort();
 });
-document.getElementById('exploreBtn').addEventListener('click', () => {
-  filters = { search: '', category: null, author: null, sortBy: 'date', order: 'desc' };
-  document.getElementById('searchInput').value = '';
-  document.getElementById('sortSelect').value = 'date';
-  renderSidebarLists(); applyFiltersAndSort();
-});
+
 
 // ---------- tiroir de filtres mobile ----------
 // Réutilise le MÊME élément de la barre latérale (déplacé dans le tiroir) plutôt que de le cloner,
@@ -1169,8 +1146,8 @@ const TRANSLATIONS = {
     toast_review_submitted: "¡Gracias! Tu opinión se ha añadido.",
 
     edit: 'Editar', delete: 'Eliminar', edit_article_title: 'Editar artículo', save_changes: 'Guardar cambios',
-confirm_delete_article: '¿Eliminar este artículo? Esta acción no se puede deshacer.',
-toast_updated: 'Artículo actualizado', toast_deleted: 'Artículo eliminado',
+    confirm_delete_article: '¿Eliminar este artículo? Esta acción no se puede deshacer.',
+    toast_updated: 'Artículo actualizado', toast_deleted: 'Artículo eliminado',
   }
 };
 
@@ -1731,7 +1708,6 @@ function applyFiltersAndSort() {
     return matchSearch && matchCat && matchAuthor;
   });
 
-  // Trier les articles
   list.sort((a, b) => {
     let va, vb;
     if (filters.sortBy === 'date') { va = new Date(a.date).getTime(); vb = new Date(b.date).getTime(); }
@@ -1740,15 +1716,15 @@ function applyFiltersAndSort() {
     return filters.order === 'desc' ? vb - va : va - vb;
   });
 
-  // Calculer le nombre total de pages
-  totalPages = Math.ceil(list.length / articlesPerPage);
+  const showAll = !isFinite(articlesPerPage);
+  totalPages = showAll ? 1 : Math.max(1, Math.ceil(list.length / articlesPerPage));
 
-  // Extraire les articles pour la page actuelle
-  const startIndex = (currentPage - 1) * articlesPerPage;
-  const paginatedList = list.slice(startIndex, startIndex + articlesPerPage);
+  const paginatedList = showAll
+    ? list
+    : list.slice((currentPage - 1) * articlesPerPage, currentPage * articlesPerPage);
 
   renderGrid(paginatedList);
-  renderPagination(); // Appel de la fonction pour afficher la pagination
+  renderPagination();
 }
 
 // Fonction pour rendre la pagination
@@ -1818,13 +1794,9 @@ document.getElementById('exploreBtn').addEventListener('click', () => {
   document.getElementById('sortSelect').value = 'date';
 
   currentPage = 1;
-  const originalArticlesPerPage = articlesPerPage;
   articlesPerPage = Infinity;
-
   renderSidebarLists();
   applyFiltersAndSort();
-
-  setTimeout(() => { articlesPerPage = originalArticlesPerPage; }, 100);
 });
 
 // Scroll Reveal Effect
@@ -1834,7 +1806,7 @@ function revealElements() {
   for (let i = 0; i < reveals.length; i++) {
     const windowHeight = window.innerHeight;
     const elementTop = reveals[i].getBoundingClientRect().top;
-    const elementVisible = 150; // Distance à partir de laquelle l'élément commence à apparaître
+    const elementVisible = 150;
 
     if (elementTop < windowHeight - elementVisible) {
       reveals[i].classList.add('active');
@@ -1847,3 +1819,10 @@ function revealElements() {
 // Déclencher la fonction au chargement de la page et au défilement
 window.addEventListener('load', revealElements);
 window.addEventListener('scroll', revealElements);
+
+//mot de passe oublié
+document.getElementById('switchToSignup').addEventListener('click', () => showAuthCard('signup'));
+document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  showAuthCard('signup');
+});
