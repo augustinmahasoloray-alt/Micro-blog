@@ -7,7 +7,8 @@ Horizone Journal est une plateforme de blog.
 Ce projet a été développé dans une approche full-stack avec un front-end statique (HTML, CSS, Tailwind, JavaScript pur) et un back-end léger (Node.js / Express) qui stocke les données des utilisateurs, des articles publiés et des avis dans Google Sheets (via l'API Google Sheets).
 
 🌐 Lien de deploiment
-
+ https://micro-blog-g4yiyg.fly.dev ou 
+ https://horizone-journal.vercel.app/
 
 ✨ Fonctionnalités principales
 🌐 Interface utilisateur
@@ -135,7 +136,10 @@ CLOUDINARY_API_SECRET=...
 3. Lancer le front-end
 Ouvrez simplement index.html dans un navigateur moderne, ou utilisez un serveur local (Live Server, http-server, etc.).
 
-Le front-end est configuré pour appeler l’API sur https://horizone-backend-production.up.railway.app/api (déploiement Railway). Pour utiliser votre propre back-end, modifiez la constante API_BASE dans le fichier script.js.
+Le front-end est configuré pour appeler l’API sur https://horizone-backend-production.up.railway.app/api (déploiement Railway). Pour utiliser votre propre back-end, modifiez la constante API_BASE dans le fichier script.js en 
+const API_BASE = "http://localhost:3001";
+
+Ensuite taper : npm run dev ou node server.js + entrée
 
 📁 Structure du projet (principaux fichiers)
 text
