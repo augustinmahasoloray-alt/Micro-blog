@@ -785,49 +785,9 @@ document.getElementById('addArticleForm').addEventListener('submit', async e => 
   }
 });
 
-document.getElementById('addArticleBtn').addEventListener('click', showArticleForm);
-document.getElementById('heroCreateArticleBtn')?.addEventListener('click', showArticleForm);
+document.getElementById('addArticleBtn').addEventListener('click', () => showArticleForm());
+document.getElementById('heroCreateArticleBtn')?.addEventListener('click', () => showArticleForm());
 document.getElementById('articleFormBackBtn').addEventListener('click', hideArticleForm);
-
-document.getElementById('addArticleForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  if (!authUser) { showToast(t('login_required_publish')); return; }
-
-  const f = new FormData(e.target);
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.disabled = true;
-
-  try {
-    const token = localStorage.getItem('horizone_token');
-    const res = await fetch(`${API_BASE}/articles`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify({
-        title: f.get('title'),
-        description: f.get('description'),
-        body: f.get('body'),
-        image: f.get('image') || '',
-        category: f.get('category') || ''
-      })
-    });
-    const data = await res.json();
-    if (!res.ok) { showToast(data.error || t('err_generic')); return; }
-
-    const newArticle = normalize(data, true);
-    newArticle.authorId = data.authorId;
-    articles.unshift(newArticle);
-    comments[data.id] = []; ratings[data.id] = { avg: 0, count: 0, mine: false }; reactions[data.id] = { liked: false, likeCount: 0, thumbs: 0, heart: 0, wow: 0 };
-
-    e.target.reset();
-    hideArticleForm();
-    renderSidebarLists(); applyFiltersAndSort(); renderMyArticles();
-    showToast(t('toast_published'));
-  } catch (err) {
-    showToast(t('err_backend_unreachable'));
-  } finally {
-    btn.disabled = false;
-  }
-});
 
 // ---------- contrôles de recherche / tri ----------
 
