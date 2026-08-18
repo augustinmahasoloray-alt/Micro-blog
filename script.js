@@ -1209,8 +1209,8 @@ const TRANSLATIONS = {
     toast_review_submitted: "¡Gracias! Tu opinión se ha añadido.",
 
     edit: 'Editar', delete: 'Eliminar', edit_article_title: 'Editar artículo', save_changes: 'Guardar cambios',
-    confirm_delete_article: '¿Eliminar este artículo? Esta acción no se puede deshacer.',
-    toast_updated: 'Artículo actualizado', toast_deleted: 'Artículo eliminado',
+confirm_delete_article: '¿Eliminar este artículo? Esta acción no se puede deshacer.',
+toast_updated: 'Artículo actualizado', toast_deleted: 'Artículo eliminado',
   }
 };
 
@@ -1325,7 +1325,7 @@ applyStaticTranslations();
    Changez API_BASE vers l'endroit où vous déployez horizone-backend/ (par défaut
    en développement local). La session est un JWT stocké dans localStorage.
 ===================================================================== */
-const API_BASE = 'https://keen-ambition-production-5a17.up.railway.app';
+const API_BASE = 'https://horizone-backend-production.up.railway.app/api';
 
 let authUser = null;   // { id, name, email, avatarUrl } | null
 let pendingAvatarFile = null;
