@@ -110,4 +110,63 @@ router.post('/', requireAuth, async (req, res) => {
   }
 });
 
+// PUT /api/articles/:id — seul l'auteur peut modifier son article
+router.put('/:id', requireAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, body, image, category } = req.body;
+
+    if (!title || !description || !body) {
+      return res.status(400).json({ error: 'Title, description and body are required.' });
+    }
+
+    const sheet = await getArticlesSheet();
+    const rows = await sheet.getRows();
+    const row = rows.find((r) => r.get('id') === id);
+
+    if (!row) {
+      return res.status(404).json({ error: 'Article not found.' });
+    }
+    if (row.get('authorId') !== req.user.id) {
+      return res.status(403).json({ error: 'You can only edit your own articles.' });
+    }
+
+    row.set('title', title);
+    row.set('description', description);
+    row.set('body', body);
+    row.set('image', image || '');
+    row.set('category', category || '');
+    await row.save();
+
+    res.json(toArticleJson(row));
+  } catch (err) {
+    console.error('Update article error:', err);
+    res.status(500).json({ error: 'Something went wrong updating the article.' });
+  }
+});
+
+// DELETE /api/articles/:id — seul l'auteur peut supprimer son article
+router.delete('/:id', requireAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const sheet = await getArticlesSheet();
+    const rows = await sheet.getRows();
+    const row = rows.find((r) => r.get('id') === id);
+
+    if (!row) {
+      return res.status(404).json({ error: 'Article not found.' });
+    }
+    if (row.get('authorId') !== req.user.id) {
+      return res.status(403).json({ error: 'You can only delete your own articles.' });
+    }
+
+    await row.delete();
+    res.json({ ok: true, id });
+  } catch (err) {
+    console.error('Delete article error:', err);
+    res.status(500).json({ error: 'Something went wrong deleting the article.' });
+  }
+});
+
 export default router;

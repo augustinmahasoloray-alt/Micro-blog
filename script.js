@@ -1,3 +1,5 @@
+const FALLBACK_COVER_LOCAL = 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80';
+
 // ---------- Carousel ----------
 const slidesData = [
   {
@@ -183,7 +185,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     setTimeout(() => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 480); 
+    }, 480);
   });
 });
 
@@ -473,24 +475,28 @@ function renderGrid(list) {
             <span class="text-base" style="color:var(--text-secondary)">· ${formatDate(a.date)}</span>
           </div>
           <div class="flex items-center flex-wrap gap-1 pt-2 border-t" style="border-color:var(--surface-border)">
-            <button class="card-icon-btn like-btn ${r.liked ? 'active' : ''}" onclick="toggleLike('${a.id}')" aria-label="Like">
-              <i class="${r.liked ? 'fa-solid' : 'fa-regular'} fa-heart like-icon"></i>
-              <span>${r.likeCount}</span>
-            </button>
-            <button class="card-icon-btn" onclick="openLightbox('${a.id}')" aria-label="Comments">
-              <i class="fa-regular fa-comment"></i>
-              <span>${a.commentsCount + comments[a.id].length}</span>
-            </button>
-            <button class="card-icon-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${a.id}')" aria-label="Favorite">
-              <i class="${isFav ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'}"></i>
-            </button>
-            <button class="card-icon-btn" onclick="shareArticle('${a.id}')" aria-label="Share">
-              <i class="fa-solid fa-arrow-up-from-bracket"></i>
-            </button>
-            <span class="ml-auto flex items-center">
-              ${renderStars(a.id, rt.avg, false)}
-            </span>
-          </div>
+  <button class="card-icon-btn like-btn ${r.liked ? 'active' : ''}" onclick="toggleLike('${a.id}')" aria-label="Like">
+    <i class="${r.liked ? 'fa-solid' : 'fa-regular'} fa-heart like-icon"></i>
+    <span>${r.likeCount}</span>
+  </button>
+  <button class="card-icon-btn" onclick="openLightbox('${a.id}')" aria-label="Comments">
+    <i class="fa-regular fa-comment"></i>
+    <span>${a.commentsCount + comments[a.id].length}</span>
+  </button>
+  <button class="card-icon-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${a.id}')" aria-label="Favorite">
+    <i class="${isFav ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'}"></i>
+  </button>
+  <button class="card-icon-btn" onclick="shareArticle('${a.id}')" aria-label="Share">
+    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+  </button>
+  ${authUser && a.authorId === authUser.id ? `
+    <button class="card-icon-btn" onclick="editArticle('${a.id}')" aria-label="Edit"><i class="fa-solid fa-pen"></i></button>
+    <button class="card-icon-btn" onclick="deleteArticle('${a.id}')" aria-label="Delete"><i class="fa-solid fa-trash"></i></button>
+  ` : ''}
+  <span class="ml-auto flex items-center">
+    ${renderStars(a.id, rt.avg, false)}
+  </span>
+</div>
         </div>
       </article>`;
   }).join('');
@@ -595,11 +601,17 @@ function escapeHtml(s) { const d = document.createElement('div'); d.textContent 
 
 function renderLightboxActions(id) {
   const r = reactions[id], rt = ratings[id], isFav = favorites.has(id);
+  const a = articles.find(x => x.id === id);
+  const canEdit = authUser && a && a.authorId === authUser.id;
   document.getElementById('lbActions').innerHTML = `
     <button class="card-icon-btn ${r.liked ? 'active' : ''}" onclick="toggleLike('${id}')">❤️ ${t('like')} · ${r.likeCount}</button>
     <button class="card-icon-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${id}')">${isFav ? '🔖 ' + t('favorited') : '🏷️ ' + t('favorite')}</button>
     <span class="flex items-center gap-0.5">${renderStars(id, rt.avg, true)}</span>
     <span class="text-base" style="color:var(--text-secondary)">(${rt.count} ${t('ratings_label')})</span>
+    ${canEdit ? `
+      <button class="card-icon-btn" onclick="editArticle('${id}')">✏️ ${t('edit')}</button>
+      <button class="card-icon-btn" onclick="deleteArticle('${id}')">🗑️ ${t('delete')}</button>
+    ` : ''}
     <div class="flex items-center gap-1 ml-auto">
       <button class="card-icon-btn" onclick="setReaction('${id}','thumbs')">👍 ${r.thumbs}</button>
       <button class="card-icon-btn" onclick="setReaction('${id}','heart')">❤️ ${r.heart}</button>
@@ -643,21 +655,136 @@ document.getElementById('lbCommentForm').addEventListener('submit', e => {
 // ---------- ajouter un article (vue en ligne qui remplace la grille dans la colonne 2) ----------
 const articleGridView = document.getElementById('articleGridView');
 const articleFormView = document.getElementById('articleFormView');
+let editingArticleId = null;
 
-function showArticleForm() {
+function showArticleForm(articleToEdit = null) {
   if (!authUser) {
     showToast(t('login_required_publish'));
     openAuthModal('login');
     return;
   }
+
+  const form = document.getElementById('addArticleForm');
+  const heading = document.querySelector('#articleFormView h2');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  if (articleToEdit) {
+    editingArticleId = articleToEdit.id;
+    form.title.value = articleToEdit.title;
+    form.category.value = articleToEdit.tags[0] || '';
+    form.image.value = articleToEdit.image === FALLBACK_COVER_LOCAL ? '' : articleToEdit.image;
+    form.description.value = articleToEdit.description;
+    form.body.value = articleToEdit.body || '';
+    heading.textContent = t('edit_article_title');
+    submitBtn.textContent = t('save_changes');
+  } else {
+    editingArticleId = null;
+    form.reset();
+    heading.textContent = t('new_article_title');
+    submitBtn.textContent = t('publish');
+  }
+
   articleGridView.classList.add('hidden');
   articleFormView.classList.remove('hidden');
   document.getElementById('blogSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
 function hideArticleForm() {
+  editingArticleId = null;
   articleFormView.classList.add('hidden');
   articleGridView.classList.remove('hidden');
 }
+
+async function deleteArticle(id) {
+  if (!confirm(t('confirm_delete_article'))) return;
+
+  try {
+    const token = localStorage.getItem('horizone_token');
+    const res = await fetch(`${API_BASE}/articles/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || t('err_generic')); return; }
+
+    articles = articles.filter(a => a.id !== id);
+    delete comments[id]; delete ratings[id]; delete reactions[id];
+    favorites.delete(id);
+
+    if (currentLightboxId === id) {
+      lightbox.classList.add('hidden'); lightbox.classList.remove('flex');
+      currentLightboxId = null;
+    }
+
+    renderSidebarLists(); renderFavoritesList(); renderMyArticles(); applyFiltersAndSort();
+    showToast(t('toast_deleted'));
+  } catch (err) {
+    showToast(t('err_backend_unreachable'));
+  }
+}
+
+function editArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  showArticleForm(a);
+}
+
+document.getElementById('addArticleForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!authUser) { showToast(t('login_required_publish')); return; }
+
+  const f = new FormData(e.target);
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+
+  const payload = {
+    title: f.get('title'),
+    description: f.get('description'),
+    body: f.get('body'),
+    image: f.get('image') || '',
+    category: f.get('category') || ''
+  };
+
+  const isEditing = !!editingArticleId;
+  const url = isEditing ? `${API_BASE}/articles/${editingArticleId}` : `${API_BASE}/articles`;
+  const method = isEditing ? 'PUT' : 'POST';
+
+  try {
+    const token = localStorage.getItem('horizone_token');
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (!res.ok) { showToast(data.error || t('err_generic')); return; }
+
+    if (isEditing) {
+      const idx = articles.findIndex(a => a.id === editingArticleId);
+      if (idx !== -1) {
+        const updated = normalize(data, true);
+        updated.authorId = data.authorId;
+        articles[idx] = updated;
+      }
+      showToast(t('toast_updated'));
+    } else {
+      const newArticle = normalize(data, true);
+      newArticle.authorId = data.authorId;
+      articles.unshift(newArticle);
+      comments[data.id] = []; ratings[data.id] = { avg: 0, count: 0, mine: false }; reactions[data.id] = { liked: false, likeCount: 0, thumbs: 0, heart: 0, wow: 0 };
+      showToast(t('toast_published'));
+    }
+
+    e.target.reset();
+    hideArticleForm();
+    renderSidebarLists(); applyFiltersAndSort(); renderMyArticles();
+  } catch (err) {
+    showToast(t('err_backend_unreachable'));
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 document.getElementById('addArticleBtn').addEventListener('click', showArticleForm);
 document.getElementById('heroCreateArticleBtn')?.addEventListener('click', showArticleForm);
 document.getElementById('articleFormBackBtn').addEventListener('click', hideArticleForm);
@@ -789,12 +916,12 @@ const chatbotColEl = document.getElementById('chatbotCol');
 const chatMobileOverlay = document.getElementById('chatMobileOverlay');
 
 function openMobileChat() {
-  chatMobileOverlay.appendChild(chatPanel);   
+  chatMobileOverlay.appendChild(chatPanel);
   chatMobileOverlay.classList.add('open');
 }
 function closeMobileChat() {
   chatMobileOverlay.classList.remove('open');
-  chatbotColEl.appendChild(chatPanel);        
+  chatbotColEl.appendChild(chatPanel);
 }
 
 chatToggleMobile?.addEventListener('click', openMobileChat);
@@ -945,7 +1072,11 @@ const TRANSLATIONS = {
     review_updates_checkbox: "Would you like to receive updates from us? (We promise no spam!)",
     submit_review: "Submit review",
     no_reviews_yet: "Be the first to leave a review.",
-    toast_review_submitted: "Thanks! Your review has been added."
+    toast_review_submitted: "Thanks! Your review has been added.",
+    edit: 'Edit', delete: 'Delete', edit_article_title: 'Edit article', save_changes: 'Save changes',
+    confirm_delete_article: 'Delete this article? This cannot be undone.',
+    toast_updated: 'Article updated', toast_deleted: 'Article deleted',
+
   },
   fr: {
     nav_home: 'Accueil', nav_articles: 'Articles', nav_categories: 'Catégories', nav_about: 'À propos', nav_contact: 'Contact',
@@ -1008,7 +1139,11 @@ const TRANSLATIONS = {
     review_updates_checkbox: "Souhaitez-vous recevoir nos actualités ? (Promis, pas de spam !)",
     submit_review: "Envoyer l'avis",
     no_reviews_yet: "Soyez le premier à laisser un avis.",
-    toast_review_submitted: "Merci ! Votre avis a été ajouté."
+    toast_review_submitted: "Merci ! Votre avis a été ajouté.",
+
+    edit: 'Modifier', delete: 'Supprimer', edit_article_title: "Modifier l'article", save_changes: 'Enregistrer',
+    confirm_delete_article: 'Supprimer cet article ? Cette action est irréversible.',
+    toast_updated: 'Article mis à jour', toast_deleted: 'Article supprimé',
   },
   es: {
     nav_home: 'Inicio', nav_articles: 'Artículos', nav_categories: 'Categorías', nav_about: 'Acerca de', nav_contact: 'Contacto',
@@ -1071,7 +1206,11 @@ const TRANSLATIONS = {
     review_updates_checkbox: "¿Quieres recibir novedades? (¡Sin spam, lo prometemos!)",
     submit_review: "Enviar opinión",
     no_reviews_yet: "Sé el primero en dejar una opinión.",
-    toast_review_submitted: "¡Gracias! Tu opinión se ha añadido."
+    toast_review_submitted: "¡Gracias! Tu opinión se ha añadido.",
+
+    edit: 'Editar', delete: 'Eliminar', edit_article_title: 'Editar artículo', save_changes: 'Guardar cambios',
+    confirm_delete_article: '¿Eliminar este artículo? Esta acción no se puede deshacer.',
+    toast_updated: 'Artículo actualizado', toast_deleted: 'Artículo eliminado',
   }
 };
 
