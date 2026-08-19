@@ -1,0 +1,113 @@
+[33mcommit c9f709e69d9d68fa79bf860a8e685637e5e2dd27[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Augustin <augustin.mahasoloray@student.passerellesnumeriques.org>
+Date:   Tue Aug 18 20:49:17 2026 +0300
+
+    mis a jour google index
+
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 006c026..c89e9c4 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -4,6 +4,7 @@[m
+ <head>[m
+   <meta charset="UTF-8">[m
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m  <meta name="description" content="Horizone Journal - Mini blog moderne permettant de découvrir et partager des articles.">[m
+   <meta name="google-site-verification" content="ZJoCaeHCEdyvkBCRq2Tkjk1QZsVHhVRsXKsA9mu_SyY" />[m
+   <title>Horizone Journal — Mini Blog</title>[m
+   <script src="https://cdn.tailwindcss.com"></script>[m
+[36m@@ -31,8 +32,8 @@[m
+         <li><a href="#blogSection" data-i18n="nav_articles" class="text-[var(--accent)]">Articles</a></li>[m
+         <li><a href="#blogSection" data-i18n="nav_categories"[m
+             class="hover:text-[var(--accent)] transition-colors">Catégories</a></li>[m
+[31m-        <li><a href="#contactSection" data-i18n="nav_about"[m
+[31m-            class="hover:text-[var(--accent)] transition-colors">À propos</a></li>[m
+[32m+[m[32m        <li><a href="#contactSection" data-i18n="nav_about" class="hover:text-[var(--accent)] transition-colors">À[m
+[32m+[m[32m            propos</a></li>[m
+         <li><a href="#contactSection" data-i18n="nav_contact"[m
+             class="hover:text-[var(--accent)] transition-colors">Contact</a></li>[m
+       </ul>[m
+[36m@@ -62,7 +63,8 @@[m
+ [m
+         <div id="navLoggedOut" class="flex items-center gap-3">[m
+           <button type="button" id="openLoginBtn" data-i18n="login"[m
+[31m-            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Se connecter</button>[m
+[32m+[m[32m            class="nav-text text-base px-4 py-2.5 rounded-full hover:bg-white/10 transition-colors">Se[m
+[32m+[m[32m            connecter</button>[m
+           <button type="button" id="openSignupBtn" data-i18n="signup"[m
+             class="nav-cta text-base px-5 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity">S'inscrire</button>[m
+         </div>[m
+[36m@@ -71,7 +73,8 @@[m
+           <img id="navUserAvatar" src="" alt="" class="w-9 h-9 rounded-full object-cover border border-white/30">[m
+           <span id="navUserName" class="nav-text text-base font-medium"></span>[m
+           <button type="button" id="logoutBtn" data-i18n="logout"[m
+[31m-            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Se déconnecter</button>[m
+[32m+[m[32m            class="nav-text text-base px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Se[m
+[32m+[m[32m            déconnecter</button>[m
+         </div>[m
+       </div>[m
+ [m
+[36m@@ -348,7 +351,8 @@[m
+     style="background:var(--bg-page); overflow: visible;" id="blogSection">[m
+ [m
+     <div class="flex items-center justify-between mb-6 lg:hidden">[m
+[31m-      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Derniers articles</h2>[m
+[32m+[m[32m      <h2 data-i18n="latest_articles" class="font-display text-base" style="color:var(--text-primary)">Derniers articles[m
+[32m+[m[32m      </h2>[m
+       <button id="filterToggleBtn" data-i18n="filters_btn" class="text-base px-4 py-2 rounded-full border font-medium"[m
+         style="border-color:var(--surface-border); color:var(--text-primary)">Filtres ▾</button>[m
+     </div>[m
+[36m@@ -428,7 +432,8 @@[m
+           <h4 data-i18n="favorites" class="text-base font-bold tracking-wide uppercase mb-2"[m
+             style="color:var(--text-secondary)">Favoris</h4>[m
+           <ul id="favoritesList" class="space-y-2 text-base">[m
+[31m-            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">Aucun favori pour le moment — cliquez sur 🔖 sur une carte.</li>[m
+[32m+[m[32m            <li data-i18n="no_favorites" class="text-base" style="color:var(--text-secondary)">Aucun favori pour le[m
+[32m+[m[32m              moment — cliquez sur 🔖 sur une carte.</li>[m
+           </ul>[m
+         </div>[m
+       </aside>[m
+[36m@@ -444,7 +449,8 @@[m
+             <button id="addArticleBtn" data-i18n="new_article" class="text-base px-4 py-2.5 rounded-full font-semibold"[m
+               style="background:var(--accent); color:#fff">+ Nouvel article</button>[m
+           </div>[m
+[31m-          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">Chargement des articles…</p>[m
+[32m+[m[32m          <p id="loadingMsg" data-i18n="loading_articles" class="text-base" style="color:var(--text-secondary)">[m
+[32m+[m[32m            Chargement des articles…</p>[m
+           <div id="articleGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6"></div>[m
+         </div>[m
+ [m
+[36m@@ -469,7 +475,8 @@[m
+               style="color:var(--text-secondary)">[m
+               <span aria-hidden="true">←</span> <span data-i18n="back_to_articles">Retour aux articles</span>[m
+             </button>[m
+[31m-            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">Nouvel article</h2>[m
+[32m+[m[32m            <h2 data-i18n="new_article_title" class="font-display text-xl" style="color:var(--text-primary)">Nouvel[m
+[32m+[m[32m              article</h2>[m
+           </div>[m
+           <form id="addArticleForm" class="space-y-3 text-base max-w-xl">[m
+             <input required name="title" data-i18n-placeholder="ph_title" placeholder="Titre"[m
+[36m@@ -481,12 +488,13 @@[m
+             <input name="image" data-i18n-placeholder="ph_image" placeholder="URL de l'image de couverture (facultatif)"[m
+               class="w-full rounded-lg px-3.5 py-2.5 border outline-none"[m
+               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)">[m
+[31m-            <textarea required name="description" data-i18n-placeholder="ph_description" placeholder="Courte description"[m
+[31m-              rows="2" class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"[m
+[31m-              style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>[m
+[31m-            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Texte intégral de l'article" rows="10"[m
+[32m+[m[32m            <textarea required name="description" data-i18n-placeholder="ph_description"[m
+[32m+[m[32m              placeholder="Courte description" rows="2"[m
+               class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"[m
+               style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>[m
+[32m+[m[32m            <textarea required name="body" data-i18n-placeholder="ph_body" placeholder="Texte intégral de l'article"[m
+[32m+[m[32m              rows="10" class="w-full rounded-lg px-3.5 py-2.5 border outline-none resize-none"[m
+[32m+[m[32m              style="background:transparent; border-color:var(--surface-border); color:var(--text-primary)"></textarea>[m
+             <button type="submit" data-i18n="publish"[m
+               class="w-full sm:w-auto text-base px-5 py-2.5 rounded-full font-semibold"[m
+               style="background:var(--accent); color:#fff">Publier</button>[m
+[36m@@ -551,8 +559,8 @@[m
+           <h4 data-i18n="comments" class="font-display text-lg mb-3" style="color:var(--text-primary)">Commentaires</h4>[m
+           <div id="lbComments" class="space-y-3 mb-4"></div>[m
+           <form id="lbCommentForm" class="flex gap-2">[m
+[31m-            <input id="lbCommentInput" type="text" data-i18n-placeholder="write_comment" placeholder="Écrire un commentaire…"[m
+[31
